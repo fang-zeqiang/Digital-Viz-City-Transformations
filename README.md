@@ -2,6 +2,8 @@
 
 Hello! welcome to Group 9 playground (CASA0003 Digital-Viz).
 
+This project is developed by [@Franklin Fang](https://github.com/fang-zeqiang), [@Grace Lyu](https://github.com/gracexxi), [@Junkai](https://github.com/Junkai0727), [@Mengqing Zhao](https://github.com/MengqingZhao)
+
 We hope to tell a story about Cycling in Toronto ( What has city of Toronto done to improve the urban cycling experience? )
 
 There are several sub-topics (sub-stories) for our digital visualisation project.
