@@ -1,6 +1,4 @@
-# Intro
-
-There is Chapter 1: Cycling Risk in Toronto
+# Chapter 1: Cycling Risk in Toronto
 
 These maps will present to what extent bicycle theft can casuse risk in Toronto neighbourhoods
 
