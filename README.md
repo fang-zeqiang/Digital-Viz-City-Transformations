@@ -13,3 +13,5 @@ There are several sub-topics (sub-stories) for our digital visualisation project
 3. Cycling Commute Time (Evolution)
 
 You can access our team project in this [link](http://zeqiang.fun/Digital-Viz-City-Transformations/Website/)
+
+![figure1](https://github.com/fang-zeqiang/Digital-Viz-City-Transformations/blob/main/Images/toronto-wards-island-cn-tower-825x350.png?raw=true)
