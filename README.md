@@ -1,4 +1,4 @@
-# Digital-Viz-City-Transformations
+# Digital Visualisation Project: Cycling Experience Transformations in Toronto, Canada
 
 Hello! welcome to Group 9 playground (CASA0003 Digital-Viz).
 
