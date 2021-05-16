@@ -155,9 +155,13 @@
     zoom: 10.45 // starting zoom 
     });
 
+    var hoveredStateId = null; // define the hovered status
+
     map.on('load', function() {
+
       map.addControl(new mapboxgl.NavigationControl());
       // start!
+      
       var layers = ['High Risk', 'Medium Risk', 'Low Risk'];
       var colors = ['hsla(57, 94%, 50%, 0.5)', 'hsla(284, 77%, 69%, 0.5)', 'hsla(187,73%, 73%, 0.5)'];
     
@@ -175,6 +179,57 @@
         item.appendChild(value);
         legend.appendChild(item);
       }
+    
+      map.addSource('states', {
+        'type': 'geojson',
+        'data': ".geojson"
+      });
+    
+      map.addLayer({
+        'id': 'state-fills',
+        'type': 'fill',
+        'source': 'states',
+        'layout': {},
+        'paint': {
+          'fill-color': '#627BC1',
+          'fill-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            1,
+            0.5
+          ]
+        }
+      });
+
+      map.on('mousemove','state-fills', function (e){
+            if (e.features.length > 0){
+              if (hoveredStateId != null) {
+                  map.setFeatureState(
+                      { source: 'states', id: hoveredStateId },
+                      { hover: false }
+                  );
+                }
+                hoveredStateId = e.features[0].id;
+                map.setFeatureState(
+                  { source: 'states' , id: hoveredStateId },
+                  { hover : true}
+                );
+            }
+            
+        });
+
+              // When the mouse leaves the state-fill layer, update the feature state of the
+      // previously hovered feature.
+      map.on('mouseleave', 'state-fills', function () {
+          if (hoveredStateId !== null) {
+              map.setFeatureState(
+                  { source: 'states', id: hoveredStateId },
+                  { hover: false }
+              );
+          }
+          hoveredStateId = null;
+      });
+
     });
 
     // Attack Case Details Mouse Movement Function 
@@ -197,7 +252,6 @@
     });
     */
 
-
     // var a switch style function
 
     function switchLayer(layer) {
@@ -207,16 +261,21 @@
     //Event listener for layer switch
 
     // all
+    /*
     document.getElementById("layer1").addEventListener("click", function(){
       layer_input = 'ckm6hv3irf21517l9i60tsfmk';
       switchLayer(layer_input);
     });
+    */
 
     // count by states
+
+    /*
     document.getElementById("layer2").addEventListener("click", function(){
       layer_input = 'ckm5rx4k4bmgi17lbhw3r26gt';
       switchLayer(layer_input);
     });
+    */
 
     //Event listener for the zoom to buttons created using a for loop and switch case statement to set lat and long
 
