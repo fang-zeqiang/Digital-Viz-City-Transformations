@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Toronto Bicycle Racks Capacity Map 2021</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+
+        .map-overlay {
+            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            position: absolute;
+            width: 17%;
+            top: 0;
+            left: 0;
+            padding: 10px;
+        }
+
+        .map-overlay .map-overlay-inner {
+            background-color: #fff;
+            box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+            border-radius: 3px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .map-overlay table {
+            border: none;
+            width: 100%;
+        }
+
+        .map-overlay h2 {
+            line-height: 24px;
+            display: block;
+            margin: 0 0 10px;
+        }
+
+        .box {
+            float: left;
+            height: 1px;
+            width: 1px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            border: 1px solid black;
+            clear: both;
+            box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+            border-radius: 1px;           
+            padding: 5.5px;
+        }
+
+        .map-legend {
+            font: 10px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            position: absolute;
+            width: 238px;
+            bottom: 0;
+            right: 0;
+            padding: 10px;
+        }
+
+        .map-legend .map-legend-inner {
+            background-color: #fff;
+            box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+            border-radius: 3px;
+            padding: 10px;
+            margin-bottom: 9px;
+        }
+
+        .map-legend table {
+            border: none;
+            width: 100%;
+        }
+
+        .map-legend h2 {
+            line-height: 24px;
+            display: block;
+            margin: 0 0 10px;
+        }
+
+        .red {
+            margin-bottom: 10px;
+            background-color: #b65457;
+        }
+
+        .yellow {
+            margin-bottom: 10px;
+            background-color: #ffff33;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div id='map'></div>
+
+    <div class='map-overlay top'>
+        <div class='map-overlay-inner'>
+            <h2>Toronto Bicycle Racks Capacity Map 2021</h2>
+            <table>
+             <tr><td><p class="cityfly">Zoom To: <a href="#" class="viewlink" id="centre">City Centre</a> &nbsp;<a href="#" class="citylink" id="overall">Total view</a> </p>
+             </td></tr>
+             </table>
+        </div>
+    </div>
+
+    <div class='map-legend top'>
+        <div class='map-legend-inner'>
+            <h2>Bicycle Racks Capacity</h2>
+            <table>
+                <tr><td>
+                    <div><div class='box red'></div>Capacity is less than or equal to 40</div>
+                    <div><div class='box yellow'></div>Capacity is larger than 40</div>
+                </td></tr>
+            </table>
+        </div>
+    </div>
+    
+
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhY2V4eGkiLCJhIjoiY2trNTFmeDMyMDg5YzJ1bnQ2aGpxaWVjdSJ9.D-9jn7UFiHILlAj8v5jtTQ'; // Put your Mapbox Public Access token here
+   
+        // Load a new map in the 'map' HTML div
+        var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 
+        'mapbox://styles/gracexxi/ckorwodaf03v617nvtbazdtjx',
+        //'mapbox://styles/gracexxi/ckoqiwjn90hz718mp8sjs3vrd', // style location
+        center: [-79.35, 43.719], // starting position [lng, lat]
+        zoom: 10 // starting zoom
+        });
+
+
+     map.on('load', function() {
+
+        
+        // Set global light properties which influence 3D layer shadows
+        map.setLight({color: "#fff", intensity: 0.15, position: [1.15, 210, 30]});
+        // Add standard navigation control
+        map.addControl(new mapboxgl.NavigationControl());
+
+
+        // Add the proportional circle layer to the map
+        map.addLayer({
+            id: 'racks',
+            type: 'circle',
+            source: {
+                type: 'vector',
+                 url: 'mapbox://gracexxi.5dua7rmv' // Your Mapbox tileset Map ID
+            },
+            'source-layer': 'Bicycle_Parking_Racks_Data-3n1r1l', // name of tilesets
+            paint: {
+                'circle-color': {
+                    property: 'CAPACITY',
+                    stops: [
+                        [{zoom: 7, value: 32}, '#eed8d9'],
+                        [{zoom: 7, value: 40}, '#ffff4c'],
+                        [{zoom: 10, value: 32}, '#b65457'],
+                        [{zoom: 10, value: 40}, '#ffff33'],
+                        [{zoom: 14, value: 32}, '#9a373b'],
+                        [{zoom: 14, value: 40}, '#ffdc48'],
+                        [{zoom: 20, value: 32}, '#9b383c'],
+                        [{zoom: 20, value: 40}, '#e5c32e'],
+                    ],
+                },
+               'circle-opacity': {
+                   stops: [[11,0.6],[12,0.65],[22,0.7]]
+               },
+               'circle-radius': {
+                    property: 'CAPACITY',
+                    stops: [
+                        [{zoom: 7, value: 40}, 5],
+                        [{zoom: 7, value: 72}, 10],
+                        [{zoom: 10, value: 20}, 5],
+                        [{zoom: 10, value: 40}, 10],
+                        [{zoom: 10, value: 72}, 20],
+                        [{zoom: 16, value: 20}, 10],
+                        [{zoom: 16, value: 40}, 15],
+                        [{zoom: 16, value: 72}, 25],
+                    ]
+                }
+            }
+        });
+
+
+        //Event listener for the zoom to buttons created using a for loop and switch case statement to set lat and long
+        var x = document.getElementsByClassName('viewlink');
+        var i;
+		for (i = 0; i < x.length; i++) {
+			x[i].addEventListener('click', function(e) {
+				var lat,long;
+				switch(e.target.id) {
+					case "centre": long=-79.386; lat=43.655; break;
+					//case "overall": long=-79.35; lat=43.719; break;
+				}
+				map.flyTo({
+					center: [long,lat],
+					zoom: 12.5,
+					speed: 0.4
+				});
+			});
+		}
+
+        //Event listener for the zoom to buttons created using a for loop and switch case statement to set lat and long
+        var x = document.getElementsByClassName('citylink');
+        var i;
+		for (i = 0; i < x.length; i++) {
+			x[i].addEventListener('click', function(e) {
+				var lat,long;
+				switch(e.target.id) {
+					case "overall": long=-79.35; lat=43.719; break;
+				}
+				map.flyTo({
+					center: [long,lat],
+					zoom: 10,
+					speed: 0.4
+				});
+			});
+		}
+
+
+        var mypopup = new mapboxgl.Popup({offset:[150,50],closeButton: false});
+
+        // Another event listener that adds the popup when the user puts their cursor over the tube circles
+        map.on('mouseover', 'racks', function (e) {
+            mypopup
+                .setLngLat(e.features[0].geometry.coordinates)
+                .setHTML("<h3>" + e.features[0].properties.ADDRESS_FULL + "</h3>Capacity: " + e.features[0].properties.CAPACITY)
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the stations layer.
+        map.on('mouseenter', 'racks', function () {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves and remove the popup window.
+        map.on('mouseleave', 'racks', function () {
+            map.getCanvas().style.cursor = '';
+            mypopup.remove();
+        });
+
+
+
+
+
+     });
+
+
+   </script>
+
+
+</body>
+</html>
