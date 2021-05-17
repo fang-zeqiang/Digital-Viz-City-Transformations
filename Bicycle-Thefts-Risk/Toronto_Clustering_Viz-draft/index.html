@@ -98,6 +98,20 @@
         max-width: 400px;
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     }
+
+    .clusterInfo {
+        position: absolute;
+        font-family: sans-serif;
+        margin-top: 5px;
+        margin-left: 5px;
+        padding: 5px;
+        width: 30%;
+        border: 2px solid black;
+        font-size: 14px;
+        color: #222;
+        background-color: #fff;
+        border-radius: 3px;
+    }
   </style>
 </head>
 
@@ -106,10 +120,12 @@
   <div id='map'></div>
 
   <div class="clusterInfo">
-    <div><strong>Neighbourhood:</strong>&nbsp;<span id="mag"></span></div>
-    <div><strong>Cluster:</strong>&nbsp;<span id="loc"></span></div>
-    <div><strong>Frequency:</strong>&nbsp;<span id="date"></span></div>
-    <div><strong>Cost of Bike:</strong>&nbsp;<span id="date"></span></div>
+    <div><strong>Neighbourhoods' Bicycle Theft Information</strong></div>
+    <div><strong>&#12288</strong></div>
+    <div><strong>Hood:</strong>&nbsp;<span id="hoo"></span></div>
+    <div><strong>Cluster:</strong>&nbsp;<span id="clu"></span></div>
+    <div><strong>Frequency:</strong>&nbsp;<span id="fre"></span></div>
+    <div><strong>Cost of Bike:</strong>&nbsp;<span id="cost"></span></div>
     <!-- url = https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bicycle-Thefts-Risk/Dataset/dfmg_after_cluster.geojson  -->
   </div>
 
@@ -152,8 +168,6 @@
   </div>
   -->
 
-  <!-- I want to create a tooltip box to go further info for neighbours -->
-
   <div class='map-overlay' id='legend'>
     <h2>Characters of Toronto Hoods</h2>
   </div>
@@ -163,19 +177,27 @@
 
     var map = new mapboxgl.Map({
     container: 'map', // container ID
+    // mapbox://styles/fangzq/ckocxpqre2ep517lsrcm2ne53
     style: 'mapbox://styles/fangzq/ckocxpqre2ep517lsrcm2ne53', //'mapbox://styles/fangzq/ckm6hv3irf21517l9i60tsfmk', // style URL 
     center: [-79.3808, 43.7168], // starting position [lng, lat]
     zoom: 10.45 // starting zoom 
     });
 
     var hoveredStateId = null; // define the hovered status
+    
+    // Target the span elements used in the sidebar
+    var hooDisplay = document.getElementById('hoo');
+    var cluDisplay = document.getElementById('clu');
+    var freDisplay = document.getElementById('fre');
+    var costDisplay = document.getElementById('cost');    
 
     map.on('load', function() {
 
       map.addSource('states', {
         'type': 'geojson',
         // 'data': 'neighbourhoods_for_mapbox_v1.geojson'
-        'data': "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bicycle-Thefts-Risk/Dataset/neighbourhoods_for_mapbox.geojson",
+        //'data': "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bicycle-Thefts-Risk/Dataset/neighbourhoods_for_mapbox.geojson",
+        'data': "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bicycle-Thefts-Risk/Dataset/dfmg_after_cluster.geojson",
         'generateId': true
       });
     
@@ -196,7 +218,46 @@
       });
 
       map.on('mousemove','state-fills', function (e){
+
+            var hood = e.features[0].properties.AREA_NAME;
+            var cluster = e.features[0].properties.Kmeans_Cluster;
+            var frequency = e.features[0].properties.Freq;
+            var cost = e.features[0].properties.Cost_of_Bike;
+
+            // create a function which can tell you number related to its meaning
+            function whatcluster(temp_cluster) {
+                var temp = 0;
+                if (temp_cluster == 0) {
+                  return "Low Risk Area";
+                }
+                if (temp_cluster == 1) {
+                  return "Medium Risk Area";
+                }
+                if (temp_cluster == 2) {
+                  return "High Risk Area";
+                }
+            }
+
             if (e.features.length > 0){
+
+              /* test
+              <div><strong>Hood:</strong>&nbsp;<span id="hoo"></span></div>
+              <div><strong>Cluster:</strong>&nbsp;<span id="clu"></span></div>
+              <div><strong>Frequency:</strong>&nbsp;<span id="fre"></span></div>
+              <div><strong>Cost of Bike:</strong>&nbsp;<span id="cost"></span></div>
+               */
+
+              // Display the four attributes in the sidebar
+              hooDisplay.textContent = hood;
+              cluDisplay.textContent = whatcluster(cluster);
+              freDisplay.textContent = frequency.toFixed(0);
+              costDisplay.textContent = cost.toFixed(0);
+              
+              /* test
+              console.log(e.features[0].properties.AREA_NAME);
+              console.log(e.features[0].properties.Kmeans_Cluster);
+              */
+
               if (hoveredStateId !== null) {
                   map.setFeatureState(
                       { source: 'states', id: hoveredStateId },
@@ -204,12 +265,13 @@
                   );
                 }
                 // take care of data structure!
-                console.log(e.features[0].id);
+                // console.log(e.features[0].id);
                 hoveredStateId = e.features[0].id;
                 map.setFeatureState(
                   { source: 'states' , id: hoveredStateId },
                   { hover : true }
                 );
+                
             }
         });
 
@@ -223,6 +285,12 @@
               );
           }
           hoveredStateId = null;
+
+          // Remove the information from the previously hovered feature from the sidebar
+          hooDisplay.textContent = '';
+          cluDisplay.textContent = '';
+          freDisplay.textContent = '';
+          costDisplay.textContent = '';
       });
 
 
@@ -247,31 +315,51 @@
         legend.appendChild(item);
       }
     
-
-      map.on('mouseenter', 'states', function (e) {
-
-        // Change the cursor style as a UI indicator.
-        map.getCanvas().style.cursor = 'pointer';
-        
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].properties.description;
-        
-        // Ensure that if the map is zoomed out such that multiple
-        // copies of the feature are visible, the popup appears
-        // over the copy being pointed to.
-        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-        }
-        
-        // Populate the popup and set its coordinates
-        // based on the feature found.
-        popup.setLngLat(coordinates).setHTML(description).addTo(map);
+        // When the map loads, add the data from bicycle theft cluster
+        map.addSource('cluster', {
+          'type': 'geojson',
+          'data': 'https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bicycle-Thefts-Risk/Dataset/dfmg_after_cluster.geojson', 
+          'generateId': true // This ensures that all features have unique IDs
         });
-        
-        map.on('mouseleave', 'places', function () {
-        map.getCanvas().style.cursor = '';
-        popup.remove();
-        });
+
+        // var quakeID = null;
+        // hoveredStateId
+
+        map.on('mousemove', 'earthquakes-viz', (e) => {
+          map.getCanvas().style.cursor = 'pointer';
+          // Set variables equal to the current feature's magnitude, location, and time
+          var quakeMagnitude = e.features[0].properties.mag;
+          var quakeLocation = e.features[0].properties.place;
+          var quakeDate = new Date(e.features[0].properties.time);
+          
+          if (e.features.length > 0) {
+          // Display the magnitude, location, and time in the sidebar
+            magDisplay.textContent = quakeMagnitude;
+            locDisplay.textContent = quakeLocation;
+            dateDisplay.textContent = quakeDate;
+            
+            // When the mouse moves over the earthquakes-viz layer, update the
+            // feature state for the feature under the mouse
+          if (quakeID) {
+            map.removeFeatureState({
+            source: 'earthquakes',
+            id: quakeID
+            });
+          }
+          
+          quakeID = e.features[0].id;
+          
+          map.setFeatureState(
+          {
+          source: 'earthquakes',
+          id: quakeID
+          },
+          {
+          hover: true
+          }
+          );
+          }
+        });        
 
     });
 
