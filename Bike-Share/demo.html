@@ -2,20 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Point</title>
-    <meta
-      name="viewport"
-      content="initial-scale=1,maximum-scale=1,user-scalable=no"
-    />
-    <link
-      href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
-      rel="stylesheet"
-    />
+    <title>Bike Sharing</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
     <script charset="utf-8" src="https://d3js.org/d3.v4.min.js"></script>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.min.js"
-    ></script>
+    <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.min.js"></script>
     <script type="text/javascript" src="https://lib.baomitu.com/echarts/4.9.0-rc.1/echarts.js"></script>
     <script type="text/javascript" src="./static/geojson.js"></script>
     <script type="text/javascript" src="./static/2017_1.js"></script>
@@ -31,7 +24,8 @@
     <script type="text/javascript" src="./static/2019_3.js"></script>
     <script type="text/javascript" src="./static/2019_4.js"></script>
     <style>
-      html, body {
+      html,
+      body {
         width: 100%;
         height: 100%;
         margin: 0;
@@ -46,12 +40,38 @@
         overflow: hidden;
       }
 
-      .wrapper{
+      .wrapper {
         position: absolute;
         padding: 10px;
-        background: #fff;
+        border-radius: 3px;
+        background: #e6e6e6;
         top: 20px;
         left: 20px;
+      }
+      .wrapper .legend{
+        margin-top: 10px;
+      }
+
+      .wrapper .legend-bar{
+        height: 10px;
+        width: 100%;
+        background-image: linear-gradient(to right, #9c33c8 , #1b1968);
+        border-radius: 4px;
+        margin: 10px 0 5px 0;
+      }
+
+      .wrapper .legend-value{
+       display: flex;
+       justify-content: space-between;
+      }
+
+      .chart {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        top: 40px;
+        right: 20px;
+        padding: 10px;
       }
     </style>
   </head>
@@ -62,48 +82,111 @@
       <div class="slider">
         <div>Quarter</div>
         <div class="slider-bar">
-          <input style="width:200px" id='slider' type='range' min='1' max='12' step='1' value='1' list='tickmarks' />
-          <span class="slider-value">2010</span>
+          <input
+            style="width: 200px"
+            id="slider"
+            type="range"
+            min="1"
+            max="12"
+            step="1"
+            value="1"
+            list="tickmarks"
+          />
+          <span class="slider-value">2017 - 1</span>
         </div>
       </div>
-      <div></div>
+      <div class="legend">
+        <div>Legend</div>
+        <div class="legend-bar"></div>
+        <div class="legend-value">
+          <span>100</span>
+          <span>900</span>
+        </div>
+      </div>
     </div>
-    <script>
+    <div id="chart-view" class="chart"></div>
 
+    <script>
       const timeMapping = {
-        1: '2017 - 1',
-        2: '2017 - 2',
-        3: '2017 - 3',
-        4: '2017 - 4',
-        5: '2018 - 1',
-        6: '2018 - 2',
-        7: '2018 - 3',
-        8: '2018 - 4',
-        9: '2019 - 1',
-        10: '2019 - 2',
-        11: '2019 - 3',
-        12: '2019 - 4'
+        1: "2017 - 1",
+        2: "2017 - 2",
+        3: "2017 - 3",
+        4: "2017 - 4",
+        5: "2018 - 1",
+        6: "2018 - 2",
+        7: "2018 - 3",
+        8: "2018 - 4",
+        9: "2019 - 1",
+        10: "2019 - 2",
+        11: "2019 - 3",
+        12: "2019 - 4",
       };
       const dataMappging = {
-        '2017 - 1': data2017_1,
-        '2017 - 2': data2017_2,
-        '2017 - 3': data2017_3,
-        '2017 - 4': data2017_4,
-        '2018 - 1': data2018_1,
-        '2018 - 2': data2018_1,
-        '2018 - 3': data2018_1,
-        '2018 - 4': data2018_1,
-        '2019 - 1': data2019_1,
-        '2019 - 2': data2019_2,
-        '2019 - 3': data2019_3,
-        '2019 - 4': data2019_4
+        "2017 - 1": data2017_1,
+        "2017 - 2": data2017_2,
+        "2017 - 3": data2017_3,
+        "2017 - 4": data2017_4,
+        "2018 - 1": data2018_1,
+        "2018 - 2": data2018_1,
+        "2018 - 3": data2018_1,
+        "2018 - 4": data2018_1,
+        "2019 - 1": data2019_1,
+        "2019 - 2": data2019_2,
+        "2019 - 3": data2019_3,
+        "2019 - 4": data2019_4,
       };
 
       const App = {
         init: function () {
-          this.Year = '2017 - 1';
+          this.Year = "2017 - 1";
           this.bindEvents();
           this.initMap();
+          this.initChart();
+          // let data =[];
+          // [data2017_1, data2017_2, data2017_3, data2017_4, data2018_1, data2018_2, data2018_3, data2018_4, data2019_1, data2019_2, data2019_3, data2019_4].map(o => {
+          //   data.push(o.features.reduce((total, a) => total + a.properties.num, 0));
+          // })
+          // console.log('data', data);
+        },
+        initChart: function () {
+          this.myChart = echarts.init(document.getElementById("chart-view"));
+          const option = {
+            backgroundColor: '#fff',
+            title: {
+              text: "Total Bike-sharing Traffic",
+            },
+            tooltip: {
+              show: true,
+              trigger: "axis"
+            },
+            legend: {
+              show: false
+            },
+            grid: {
+              left: "3%",
+              right: "4%",
+              bottom: "3%",
+              containLabel: true,
+            },
+            xAxis: {
+              type: "category",
+              boundaryGap: false,
+              data: ["2017.01", "2017.02", "2017.03", "2017.04", "2018.01", "2018.02", "2018.03", "2018.04", "2019.01", "2019.02", "2019.3", "2019.4"],
+            },
+            yAxis: {
+              type: "value",
+              name: 'total'
+            },
+            series: [
+              {
+                name: "total",
+                type: "line",
+                smooth: true,
+                data: [89088, 228484, 538190, 89088, 166136, 505335, 735245, 332921, 183894, 633622, 1014370, 452847],
+              },
+            ],
+          };
+          this.myChart.setOption(option);
         },
         initMap: function () {
           mapboxgl.accessToken =
@@ -115,53 +198,51 @@
             zoom: 11,
             pitch: 0,
           });
-          this.map.on('load',  () => {
-            this.map.addSource('mapjson', {
+          this.map.on("load", () => {
+            this.map.addSource("mapjson", {
               type: "geojson",
-              data:  geojson 
+              data: geojson,
             });
             this.map.addLayer({
-              'id': 'maine',
-              'type': 'fill',
-              'source': 'mapjson',
-              'layout': {},
-              'paint': {
-              'fill-color': '#0080ff',
-              'fill-opacity': 0.5
-              }
+              id: "maine",
+              type: "fill",
+              source: "mapjson",
+              layout: {},
+              paint: {
+                "fill-color": "grey",
+                "fill-opacity": 0.5,
+              },
             });
             this.map.addSource(`data${this.Year}`, {
               type: "geojson",
-              data:  data2017_1
+              data: data2017_1,
             });
 
             this.map.addLayer({
-                id: `data${this.Year}`,
-                source: `data${this.Year}`,
-                type: "circle",
-                paint: {
-                  "circle-radius": 2.5,
-                  "circle-color": {
-                    "property": "num",
-                    "stops": [
-                      [100, "#fff5f0"],
-                      [200, "#fee0d2"],
-                      [300, "#fcbba1"],
-                      [400, "#fc9272"],
-                      [500, "#fb6a4a"],
-                      [600, "#ef3b2c"],
-                      [700, "#cb181d"],
-                      [800, "#a50f15"],
-                      [900, "#67000d"]
-                    ]
-                  },
-                  "circle-stroke-width": 1,
-                  "circle-stroke-color": "#000"
+              id: `data${this.Year}`,
+              source: `data${this.Year}`,
+              type: "circle",
+              paint: {
+                "circle-radius": 3.5,
+                "circle-color": {
+                  property: "num",
+                  stops: [
+                    [100, "#9c33c8"],
+                    [200, "#843eb8"],
+                    [300, "#7a3bb0"],
+                    [400, "#62349d"],
+                    [500, "#562f93"],
+                    [600, "#562f93"],
+                    [700, "#39277d"],
+                    [800, "#1f1f68"],
+                    [900, "#1b1968"],
+                  ],
                 },
-              });
+              },
+            });
           });
         },
-        removeLayer: function (){
+        removeLayer: function () {
           if (this.map.getLayer(`data${this.Year}`)) {
             this.map.removeLayer(`data${this.Year}`);
           }
@@ -172,30 +253,28 @@
         addLayer: function () {
           this.map.addSource(`data${this.Year}`, {
             type: "geojson",
-            data:  dataMappging[this.Year]
+            data: dataMappging[this.Year],
           });
           this.map.addLayer({
             id: `data${this.Year}`,
             source: `data${this.Year}`,
             type: "circle",
             paint: {
-              "circle-radius": 2.5,
+              "circle-radius": 3.5,
               "circle-color": {
-                "property": "num",
-                "stops": [
-                  [100, "#fff5f0"],
-                  [200, "#fee0d2"],
-                  [300, "#fcbba1"],
-                  [400, "#fc9272"],
-                  [500, "#fb6a4a"],
-                  [600, "#ef3b2c"],
-                  [700, "#cb181d"],
-                  [800, "#a50f15"],
-                  [900, "#67000d"]
-                ]
+                property: "num",
+                stops: [
+                  [100, "#9c33c8"],
+                  [200, "#843eb8"],
+                  [300, "#7a3bb0"],
+                  [400, "#62349d"],
+                  [500, "#562f93"],
+                  [600, "#562f93"],
+                  [700, "#39277d"],
+                  [800, "#1f1f68"],
+                  [900, "#1b1968"],
+                ],
               },
-              "circle-stroke-width": 1,
-              "circle-stroke-color": "#000"
             },
           });
         },
