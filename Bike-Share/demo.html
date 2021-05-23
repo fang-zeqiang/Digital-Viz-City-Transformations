@@ -10,19 +10,21 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.min.js"></script>
     <script type="text/javascript" src="https://lib.baomitu.com/echarts/4.9.0-rc.1/echarts.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/geojson_1.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2017_1.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2017_2.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2017_3.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2017_4.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2018_1.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2018_2.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2018_3.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2018_4.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2019_1.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2019_2.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2019_3.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2019_4.js"></script>
+    <!--
+    <script type="text/javascript" src="static/geojson_1.js"></script>
+    <script type="text/javascript" src="static/2017_1.js"></script>
+    <script type="text/javascript" src="static/2017_2.js"></script>
+    <script type="text/javascript" src="static/2017_3.js"></script>
+    <script type="text/javascript" src="static/2017_4.js"></script>
+    <script type="text/javascript" src="static/2018_1.js"></script>
+    <script type="text/javascript" src="static/2018_2.js"></script>
+    <script type="text/javascript" src="static/2018_3.js"></script>
+    <script type="text/javascript" src="static/2018_4.js"></script>
+    <script type="text/javascript" src="static/2019_1.js"></script>
+    <script type="text/javascript" src="static/2019_2.js"></script>
+    <script type="text/javascript" src="static/2019_3.js"></script>
+    <script type="text/javascript" src="static/2019_4.js"></script>
+    -->
     <style>
       html,
       body {
@@ -83,7 +85,7 @@
         <div>Quarter</div>
         <div class="slider-bar">
           <input
-            style="width: 200px"
+            style="width: 300px"
             id="slider"
             type="range"
             min="1"
@@ -121,6 +123,20 @@
         11: "2019 - 3",
         12: "2019 - 4",
       };
+    
+      let data2017_1 = "/static/2017_1.geojson";
+      let data2017_2 = "/static/2017_2.geojson";
+      let data2017_3 = "/static/2017_3.geojson";
+      let data2017_4 = "/static/2017_4.geojson";
+      let data2018_1 = "/static/2018_1.geojson";
+      let data2018_2 = "/static/2018_2.geojson";
+      let data2018_3 = "/static/2018_3.geojson";
+      let data2018_4 = "/static/2018_4.geojson";
+      let data2019_1 = "/static/2019_1.geojson";
+      let data2019_2 = "/static/2019_2.geojson";
+      let data2019_3 = "/static/2019_3.geojson";
+      let data2019_4 = "/static/2019_4.geojson";
+
       const dataMappging = {
         "2017 - 1": data2017_1,
         "2017 - 2": data2017_2,
@@ -201,7 +217,7 @@
           this.map.on("load", () => {
             this.map.addSource("mapjson", {
               type: "geojson",
-              data: geojson,
+              data: "static/geojson_1.geojson",
             });
             this.map.addLayer({
               id: "maine",
@@ -215,7 +231,7 @@
             });
             this.map.addSource(`data${this.Year}`, {
               type: "geojson",
-              data: data2017_1,
+              data: "/static/2017_1.geojson",
             });
 
             this.map.addLayer({
