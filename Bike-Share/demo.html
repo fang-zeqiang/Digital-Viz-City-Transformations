@@ -124,18 +124,18 @@
         12: "2019 - 4",
       };
     
-      let data2017_1 = "/static/2017_1.geojson";
-      let data2017_2 = "/static/2017_2.geojson";
-      let data2017_3 = "/static/2017_3.geojson";
-      let data2017_4 = "/static/2017_4.geojson";
-      let data2018_1 = "/static/2018_1.geojson";
-      let data2018_2 = "/static/2018_2.geojson";
-      let data2018_3 = "/static/2018_3.geojson";
-      let data2018_4 = "/static/2018_4.geojson";
-      let data2019_1 = "/static/2019_1.geojson";
-      let data2019_2 = "/static/2019_2.geojson";
-      let data2019_3 = "/static/2019_3.geojson";
-      let data2019_4 = "/static/2019_4.geojson";
+      let data2017_1 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2017_1.geojson";
+      let data2017_2 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2017_2.geojson";
+      let data2017_3 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2017_3.geojson";
+      let data2017_4 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2017_4.geojson";
+      let data2018_1 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2018_1.geojson";
+      let data2018_2 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2018_2.geojson";
+      let data2018_3 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2018_3.geojson";
+      let data2018_4 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2018_4.geojson";
+      let data2019_1 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2019_1.geojson";
+      let data2019_2 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2019_2.geojson";
+      let data2019_3 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2019_3.geojson";
+      let data2019_4 = "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2019_4.geojson";
 
       const dataMappging = {
         "2017 - 1": data2017_1,
@@ -231,7 +231,7 @@
             });
             this.map.addSource(`data${this.Year}`, {
               type: "geojson",
-              data: "/static/2017_1.geojson",
+              data: "https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bike-Share/static/2017_1.geojson",
             });
 
             this.map.addLayer({
