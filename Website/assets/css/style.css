@@ -1085,6 +1085,18 @@ section {
   padding-bottom: 80px;
 }
 
+/*--the round image -*/
+.contact .round_icon{
+  width: 150px;
+  height: 150px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
 .contact .info-box {
   color: #444444;
   background: #fff;
