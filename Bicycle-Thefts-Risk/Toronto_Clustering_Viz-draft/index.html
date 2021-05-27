@@ -127,7 +127,6 @@
     <div><strong>Cluster:</strong>&nbsp;<span id="clu"></span></div>
     <div><strong>Frequency:</strong>&nbsp;<span id="fre"></span></div>
     <div><strong>Cost of Bike:</strong>&nbsp;<span id="cost"></span></div>
-    <!-- url = https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bicycle-Thefts-Risk/Dataset/dfmg_after_cluster.geojson  -->
   </div>
 
   <!--
@@ -240,13 +239,6 @@
 
             if (e.features.length > 0){
 
-              /* test
-              <div><strong>Hood:</strong>&nbsp;<span id="hoo"></span></div>
-              <div><strong>Cluster:</strong>&nbsp;<span id="clu"></span></div>
-              <div><strong>Frequency:</strong>&nbsp;<span id="fre"></span></div>
-              <div><strong>Cost of Bike:</strong>&nbsp;<span id="cost"></span></div>
-               */
-
               // Display the four attributes in the sidebar
               hooDisplay.textContent = hood;
               cluDisplay.textContent = whatcluster(cluster);
@@ -320,125 +312,9 @@
           'type': 'geojson',
           'data': 'https://raw.githubusercontent.com/fang-zeqiang/Digital-Viz-City-Transformations/main/Bicycle-Thefts-Risk/Dataset/dfmg_after_cluster.geojson', 
           'generateId': true // This ensures that all features have unique IDs
-        });
-
-        // var quakeID = null;
-        // hoveredStateId
-
-        map.on('mousemove', 'earthquakes-viz', (e) => {
-          map.getCanvas().style.cursor = 'pointer';
-          // Set variables equal to the current feature's magnitude, location, and time
-          var quakeMagnitude = e.features[0].properties.mag;
-          var quakeLocation = e.features[0].properties.place;
-          var quakeDate = new Date(e.features[0].properties.time);
-          
-          if (e.features.length > 0) {
-          // Display the magnitude, location, and time in the sidebar
-            magDisplay.textContent = quakeMagnitude;
-            locDisplay.textContent = quakeLocation;
-            dateDisplay.textContent = quakeDate;
-            
-            // When the mouse moves over the earthquakes-viz layer, update the
-            // feature state for the feature under the mouse
-          if (quakeID) {
-            map.removeFeatureState({
-            source: 'earthquakes',
-            id: quakeID
-            });
-          }
-          
-          quakeID = e.features[0].id;
-          
-          map.setFeatureState(
-          {
-          source: 'earthquakes',
-          id: quakeID
-          },
-          {
-          hover: true
-          }
-          );
-          }
-        });        
+        });   
 
     });
-
-    // Attack Case Details Mouse Movement Function 
-    /*
-    map.on('mousemove', function(e) {
-      var attack_case = map.queryRenderedFeatures(e.point, {
-        layers: ['attacks_by_proto']
-      });
-
-      if (attack_case.length > 0) {
-        
-        document.getElementById('pd').innerHTML = '<p>This attack happened at</p>' + 
-                                                  '<p><strong>' + moment(attack_case[0].properties.datetime).format('MMMM Do YYYY, h:mm:ss a') + '</strong></p>' + 
-                                                  '<p>The protocol used in attack was  <strong>' + attack_case[0].properties.proto + '</strong></p>' +
-                                                  '<p>Its target host  is <strong>"' + attack_case[0].properties.host + '"</strong></p>' +
-                                                  '<p>This attack was from <strong>' + attack_case[0].properties.locale + '</strong>';
-      } else {
-        document.getElementById('pd').innerHTML = '<p>Try to move your mouse on points to see more details of cases!</p>';
-      }
-    });
-    */
-
-    // var a switch style function
-
-    function switchLayer(layer) {
-      map.setStyle('mapbox://styles/fangzq/' + layer);
-    }
-
-    //Event listener for layer switch
-
-    // all
-    /*
-    document.getElementById("layer1").addEventListener("click", function(){
-      layer_input = 'ckm6hv3irf21517l9i60tsfmk';
-      switchLayer(layer_input);
-    });
-    */
-
-    // count by states
-
-    /*
-    document.getElementById("layer2").addEventListener("click", function(){
-      layer_input = 'ckm5rx4k4bmgi17lbhw3r26gt';
-      switchLayer(layer_input);
-    });
-    */
-
-    //Event listener for the zoom to buttons created using a for loop and switch case statement to set lat and long
-
-    
-    // var x = document.getElementsByClassName('citylink');
-    // var i;
-    //       for (i = 0; i < x.length; i++) {
-    //         x[i].addEventListener('click', function(e) {
-
-    //           var lat,long;
-
-    //           /*
-    //           <a href="#" class="citylink" id="CA">California</a> &nbsp;
-    //           <a href="#" class="citylink" id="NY">New York</a> &nbsp;
-    //           <a href="#" class="citylink" id="GA">Georgia</a> &nbsp;
-    //           <a href="#" class="citylink" id="TX">Texas</a> &nbsp;
-    //           */
-    //           switch(e.target.id) {
-    //             case "CA": long=-118; lat=34; break;
-    //             case "NY": long=-74; lat=40.75; break;
-    //             case "GA": long=-84; lat=33.76; break;
-    //             case "TX": long=-96; lat=31; break;
-    //           }
-
-    //           map.flyTo({
-    //             center: [long,lat],
-    //             zoom: 6,
-    //             speed: 1,
-    //             pitch: 0
-    //             });
-    //         });
-    //       }
     
   </script>
 </body>
