@@ -26,6 +26,20 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <style type="text/css">
+      .shadow-box {
+          background: #fff;
+          box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+          /*    height: 500px;*/
+      }
+      .list_ li{margin:10px 0px;}
+      #cluster {margin-left: 10px;}
+      .notes{color:#777777;font-style:oblique;}
+      .table-1{background-color: #b5d8e9}
+      .table-2{background-color: #8ec4dd}
+      .table-3{background-color: #67b0d1}
+      .table-0{background-color: #f4f9fc}
+  </style>
 
   <!-- =======================================================
   * Template Name: Squadfree - v4.1.0
@@ -52,11 +66,11 @@
           <!--
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           -->
-          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
+          <li><a class="nav-link scrollto" href="#about">Background</a></li>
           <!--
-          <li><a class="nav-link scrollto" href="#services">Presentation</a></li>
+          <li><a class="nav-link scrollto" href="#cta">Presentation</a></li>
           -->
-          <li><a class="nav-link scrollto" href="#cta">Bicycle Theft</a></li>
+          <li><a class="nav-link scrollto" href="#services">Bicycle Theft</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Case Portrait</a></li>
           <li><a class="nav-link scrollto" href="#testimonials">Parking Racks</a></li>
           <li><a class="nav-link scrollto" href="#team">Bike Share</a></li>
@@ -80,7 +94,7 @@
             </ul>
           </li>
           -->
-          <li><a class="nav-link scrollto" href="#contact">Cycling Policy</a></li>
+          <li><a class="nav-link scrollto" href="#contact">About Us</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -110,33 +124,31 @@
               <p>
                 Cycling has become one of the most important part in sustainable mobility. Toronto ranks 22th in public transport frequency and 16th in bikes per 1000 people, which makes it becoming a sustainable city.
               </p>
-              <!--
-              <a href="#" class="about-btn">About us <i class="bx bx-chevron-right"></i></a>
-              -->
             </div>
           </div>
           <div class="col-xl-7 d-flex align-items-stretch">
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-                  <i class="bx bx-receipt"></i>
+                  <i class="bx bxs-bus"></i>
                   <h4>High public transport frequency</h4>
-                  <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                  <p>Public transport in Toronto can make 154 trips per stop per day, which rank 22th among the main cities as mentioned
+                  </p>
                 </div>
                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-                  <i class="bx bx-cube-alt"></i>
+                  <i class="bx bx-cycling"></i>
                   <h4>Large bicycle holdings</h4>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                  <p>There are about 1.4 bikes per 1000 people in the city of Toronto, which rank the sixteenth among the main big cities in the world</p>
                 </div>
                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-                  <i class="bx bx-images"></i>
+                  <i class="bx bxs-tree"></i>
                   <h4>Low carbon emission</h4>
-                  <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                  <p>Toronto’s sustainable public transport has a wider reach because of the improved cycling infrastructure in Toronto.</p>
                 </div>
                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-                  <i class="bx bx-shield"></i>
+                  <i class="bx bxs-news"></i>
                   <h4>Positive cycling policy</h4>
-                  <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+                  <p>The independent section for cycling on the Toronto official website offers rich information including 9 cycling infrastructure modules and effective cycling policies</p>
                 </div>
               </div>
             </div><!-- End .content-->
@@ -146,121 +158,40 @@
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <section id="services" class="services section-bg">
       <div class="container">
 
-        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
-          <h2>Our Presentation</h2>
-          <p>Welcome to Group 9's playground. Our presentation video about our story is given below.</p>
-        </div>
+        <div class="section-title" data-aos="fade-in" >
+            <h2>Problem: Bicycle Theft</h2>
+            <p>Bicycle theft frequency changed from 2014 to 2020, and characters of theft cases can be found</p>
+            <p>Data source:
+              <a href="https://open.toronto.ca/dataset/bicycle-thefts/" target="_blank">https://open.toronto.ca/dataset/bicycle-thefts/</a>
+            </p>
 
-        <div class="row">
-          <!--
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div>
-          -->
-        <iframe width="1280" height="720" src="https://web.microsoftstream.com/embed/video/56de5776-0db6-49bc-94ee-775f182de0bf?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;">
-        </iframe>
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Counts Section ======= -->
-
-    <!--
-    <section id="counts" class="counts  section-bg">
-      <div class="container">
-
-        <div class="row no-gutters">
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Happy Clients</strong> consequuntur quae</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Projects</strong> adipisci atque cum quia aut</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-       
-    </section>
-    -->
-    <!-- End Counts Section -->
-   
-
-    <!-- ======= Cta Section ======= -->
-    <section id="cta" class="cta">
-      <div class="container" data-aos="zoom-in">
-
-        <div class="text-center">
-          <h3>Problem: Bicycle Theft</h3>
-          <p>Bicycle theft frequency changed from 2014 to 2020, and characters of theft cases can be found</p>
-          
-          <!--
+            <!--
           <a class="cta-btn" href="#">Call To Action</a>
           -->
-          <iframe width="1280" height="720" src="https://zeqiang.fun/Digital-Viz-City-Transformations/Bicycle-Thefts-Risk/theft_frequency_map_tmp-3.html" allowfullscreen style="border:none;">
-          </iframe>
-
         </div>
+          <div data-aos="fade-up">
+              <iframe class="shadow-box" width="100%" height="600" src="https://zeqiang.fun/Digital-Viz-City-Transformations/Bicycle-Thefts-Risk/theft_frequency_map_tmp-3.html" allowfullscreen style="border:none;">
+              </iframe>
+              <p><br />This choropleth map shows that the bike theft cases are concentrated in the south of Toronto which is the core area.</p>
+              <br />
+          </div>
+          <div data-aos="fade-up">
+              <div class="row" style="margin-left: 5px;">
+                  <iframe class="shadow-box col-lg-7" width="60%" height="500" scrolling="no" src="https://zeqiang.fun/Digital-Viz-City-Transformations/Bicycle-Thefts-Risk/theft_trend.html" allowfullscreen style="border:none;">
+                  </iframe>
+                  <div class="col-lg-5" style="padding-left: 20px;">
+                      <ul class="list_"><br />
+                          <li>The overall trend is upward and has peaked at over 2300 cases in 2018, because of rapidly increasing bike use and lack of locking stations for bikes.</li>
+                          <li>The reason for the rebound in 2020 is that COVID-19 has caused a bike boom.</li>
+                          <li>The frequencies in the core areas have decreased in the last two years because of the government policies and suggestions.</li>
+                      </ul>
+                  </div>
 
+              </div>
+          </div>
       </div>
     </section><!-- End Cta Section -->
 
@@ -268,15 +199,49 @@
     <section id="portfolio" class="portfolio">
       <div class="container">
 
-        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+        <div class="section-title" data-aos="fade-in" >
           <h2>Bicycle Theft Characters</h2>
-          <p>After analysis these theft data, it is easy to find these three clusters (characters)</p>
-          <p>&nbsp</p> <!--to fill the empty space-->
-          <p>&nbsp</p> <!--to fill the empty space-->
-          <iframe width="1280" height="720" src="https://zeqiang.fun/Digital-Viz-City-Transformations/Bicycle-Thefts-Risk/Toronto_Clustering_Viz-draft/" allowfullscreen style="border:none;">
-          </iframe>
+          <p>In addition to the above frequency change data presentation, the bicycle theft case portrait can be drawn to highlight theft patterns in the city of Toronto</p>
+            <p>
+              Data source:
+              <a href="https://open.toronto.ca/dataset/bicycle-thefts/" target="_blank">https://open.toronto.ca/dataset/bicycle-thefts/</a>
+            </p>
         </div>
+          <div data-aos="fade-up">
+          <iframe class ="shadow-box"  width="100%" height="600" src="https://zeqiang.fun/Digital-Viz-City-Transformations/Bicycle-Thefts-Risk/Toronto_Clustering_Viz-draft/" allowfullscreen style="border:none;">
+          </iframe>
 
+          <p><br />There are 3 characters for neighbourhood bicycle theft portraits but the differences of the theft bike cost are not extremely obvious.</p>
+            
+            <div id="cluster" class="shadow-box col-lg-7" width="60%">
+            <table class="table">
+              <thead>
+                <tr class="table-0">
+                  <th scope="col">Area Characters</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-1">
+                  <th scope="row">Low risk area</th>
+                  <td>120 neighbourhoods in blue, low cost of theft bike ($1000)</td>
+                </tr>
+                <tr class="table-2">
+                  <th scope="row">Medium risk area</th>
+                  <td>16 neighbourhoods in purple, high cost ($1030)</td>
+                </tr>
+                <tr class="table-3">
+                  <th scope="row">High risk area</th>
+                  <td>3 neighbourhoods in yellow, medium cost ($1050)</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+        <div class="notes">
+            <p>* Three risk area levels: 40 theft case (Low), 350 case (Medium) and 1300 case (High)</p>
+            <p>* Cost of bike: the average level cost of theft bike calculated by each neighbourhood</p>
+        </div>
+        </div>
       </div>
     </section><!-- End Portfolio Section -->
 
@@ -284,14 +249,24 @@
     <section id="testimonials" class="testimonials section-bg">
       <div class="container">
 
-        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+        <div class="section-title" data-aos="fade-in" >
           <h2>Solution: Bicycle Parking Racks</h2>
           <p>Analysis the bicycle spatial distribution and parking capacity</p>
-        </div>
-
-        <iframe width="1280" height="720" src="https://zeqiang.fun/Digital-Viz-City-Transformations/Bike-Parking-Racks/bike_racks_trt.html" allowfullscreen style="border:none;">
+          <p>Data source:
+            <a href="https://open.toronto.ca/dataset/bicycle-parking-racks/" target="_blank">https://open.toronto.ca/dataset/bicycle-parking-racks/</a>
+          </p>
+          </div>
+        <div data-aos="fade-up">
+        <iframe class ="shadow-box" width="100%" height="600" src="https://zeqiang.fun/Digital-Viz-City-Transformations/Bike-Parking-Racks/bike_racks_trt.html" allowfullscreen style="border:none;">
         </iframe>
-
+<!--         <p><br />The map shows a positive correlation between the distribution of parking racks and the theft rates. However, the installation of parking racks in places with high theft rates, such as the city centre, may cause a waste of the prime areas. Here the government popularised a Bike-sharing plan.</p>-->
+          <ul class="list_"><br />
+              <li>The map shows a positive correlation between the distribution of parking racks and the theft rates.</li>
+              <li>However, the installation of parking racks in places with high theft rates, such as the city centre, may cause a waste of the prime areas.</li>
+              <li>Here the government popularised a Bike-sharing plan.</li>
+          </ul>
+            
+          </div>
       </div>
        
     </section><!-- End Testimonials Section -->
@@ -300,27 +275,38 @@
     <section id="team" class="team">
       <div class="container">
 
-        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+        <div class="section-title" data-aos="fade-in" >
           <h2>Future Mobility: Bike Share</h2>
           <p>Because of parkings' limitation, bike share can be a good supply for highly increasing demand after covid-19</p>
-        </div>
+          <p>
+            Data source: 
+            <a href="https://open.toronto.ca/dataset/bike-share-toronto-ridership-data/" target="_blank">https://open.toronto.ca/dataset/bike-share-toronto-ridership-data/</a>
+          </p>
+          </div>
+          <div data-aos="fade-up">
 
-        <iframe width="1280" height="720" src="https://zeqiang.fun/Digital-Viz-City-Transformations/Bike-Share/demo.html" allowfullscreen style="border:none;">
+        <iframe class ="shadow-box"  width="100%" height="600" src="https://zeqiang.fun/Digital-Viz-City-Transformations/Bike-Share/demo.html" allowfullscreen style="border:none;">
         </iframe>
-
+<!--         <p ><br />Most of the bike-sharing stations are concentrated in the city centre and bike-sharing is also used more frequently in the city centre than elsewhere.<br /><br />Total bike-sharing traffic shows a fluctuating upward trend and is influenced by seasonal factors.</p>-->
+              <ul class="list_"><br />
+              <li>Most of the bike-sharing stations are concentrated in the city centre and bike-sharing is also used more frequently in the city centre than elsewhere.</li>
+              <li>Total bike-sharing traffic shows a fluctuating upward trend and is influenced by seasonal factors.</li>
+          </ul>
+          </div>
       </div>
     </section><!-- End Team Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact section-bg">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
 
-        <div class="section-title">
-          <h2>Policies and Recommendations</h2>
-          <p>Advice for Gov and Individuals</p>
+        <div class="section-title" data-aos="fade-in">
+          <h2>About Us</h2>
+          <p>If you have any questions, please feel free to contact us.</p>
         </div>
 
-        <div class="row">
+        <div class="row" data-aos="fade-up">
+<!--
           <div class="col-lg-6">
             <div class="info-box mb-4">
               <i class="bx bx-map"></i>
@@ -328,60 +314,77 @@
               <p>A108 Adam Street, New York, NY 535022</p>
             </div>
           </div>
-
+-->
           <div class="col-lg-3 col-md-6">
             <div class="info-box  mb-4">
-              <i class="bx bx-envelope"></i>
-              <h3>Email Us</h3>
-              <p>contact@example.com</p>
+              <!--<i class="bx bx-envelope"></i>-->
+              <center>
+                <img src=" https://avatars.githubusercontent.com/u/72488175?v=4" class="round_icon"  alt="">
+              </center>
+              <h3><a href="https://github.com/MengqingZhao">Mengqing Zhao</a></h3>
+              <p>mengqing.zhao.20@ucl.ac.uk</p>
+            </div>
+          </div>
+            
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <!--<i class="bx bx-envelope"></i>-->
+              <center>
+                <img src=" https://avatars.githubusercontent.com/u/32094055?v=4" class="round_icon"  alt="">
+              </center>
+              <h3><a href="https://github.com/fang-zeqiang">Zeqiang Fang</a></h3>
+              <p>zeqiang.fang.19@ucl.ac.uk</p>
+            </div>
+          </div>
+            
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <!-- <i class="bx bx-envelope"></i> -->
+              <center>
+                <img src=" https://avatars.githubusercontent.com/u/72544636?v=4" class="round_icon"  alt="">
+              </center>
+              <h3><a href="https://github.com/Junkai0727">Junkai Ding</a></h3>
+              <p>junkai.ding.20@ucl.ac.uk</p>
+            </div>
+          </div>    
+            
+          <div class="col-lg-3 col-md-6">
+            <div class="info-box  mb-4">
+              <!-- <i class="bx bx-envelope"></i> -->
+              <center>
+                <img src=" https://avatars.githubusercontent.com/u/72396631?v=4" class="round_icon"  alt="">
+              </center>
+              <h3><a href="https://github.com/gracexxi">Yujie Lyu</a></h3>
+              <p>yujie.lyu.20@ucl.ac.uk</p>
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6">
-            <div class="info-box  mb-4">
-              <i class="bx bx-phone-call"></i>
-              <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-6 ">
-            <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
-          </div>
-
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
-
+<!--
+          <center>
+            <h3>Our Presentation</h3>
+            <p>Welcome to Group 9's playground. Our presentation video about our story is given below.</p>
+          </center> 
+          <iframe class="shadow-box" width="100%" height="500" src="https://web.microsoftstream.com/embed/video/56de5776-0db6-49bc-94ee-775f182de0bf?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;">
+          </iframe>
+-->
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section>
+    <!-- End Contact Section -->
+      
+      <section id="pre" class="pre">
+          <div class="container">
+
+              <div class="section-title" data-aos="fade-in">
+                  <h2>Our Presentation</h2>
+                  <p>Welcome to Group 9's playground. Our presentation video about our story is given below.</p>
+              </div>
+-->
+              <iframe data-aos="fade-up" class="shadow-box" width="100%" height="500" src="https://web.microsoftstream.com/embed/video/56de5776-0db6-49bc-94ee-775f182de0bf?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;">
+              </iframe>
+          </div>
+      </section>
 
   </main><!-- End #main -->
 
@@ -390,17 +393,19 @@
     <div class="footer-top">
       <div class="container">
         <div class="row">
+            <center>
 
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <div class="footer-info">
               <h3>Cycling in Toronto</h3>
-              <p class="pb-3"><em>Qui repudiandae et eum dolores alias sed ea. Qui suscipit veniam excepturi quod.</em></p>
-              <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
-              </p>
+                <p class="pb-3"><strong>Cycling does Matter</strong><br>
+                    What has the city of Toronto done to improve the urban cycling experience?</p>
+                <a href="https://github.com/fang-zeqiang/Digital-Viz-City-Transformations" class="github">View on GitHub</a>
+                <div class="social-links">
+                    <a href="https://github.com/fang-zeqiang/Digital-Viz-City-Transformations" class="github"><i class="bx bxl-github"></i></a>
+                </div>
+              
+<!--
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -408,40 +413,10 @@
                 <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
               </div>
+-->
             </div>
           </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
-
+</center>
         </div>
       </div>
     </div>
